@@ -32,7 +32,7 @@
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>The Brazilian Standard Style in accordance with ABNT-NBR 10520.2002 and ABNT-NBR 6023.2002</summary>
-    <updated>2018-02-26T20:16:49+00:00</updated>
+    <updated>2018-02-27T01:46:54+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="pt-BR">
@@ -102,7 +102,7 @@
   <macro name="author">
     <names variable="author">
       <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter="; " delimiter-precedes-last="always">
-        <name-part name="family" text-case="uppercase"/>
+        <name-part name="family" text-case="capitalize-first"/>
         <name-part name="given" text-case="capitalize-first"/>
       </name>
       <label form="short" prefix=" (" suffix=".)" text-case="uppercase"/>
@@ -116,7 +116,7 @@
   <macro name="author-short">
     <names variable="author">
       <name form="short" delimiter="; " and="text" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all">
-        <name-part name="family" text-case="uppercase"/>
+        <name-part name="family" text-case="capitalize-first"/>
         <name-part name="given" text-case="uppercase"/>
       </name>
       <substitute>
@@ -395,8 +395,8 @@
             <text macro="translator" suffix=". "/>
             <text macro="edition" suffix=". "/>
             <text variable="version" suffix=". "/>
-            <text macro="publisher" suffix=". "/>
             <text macro="locators"/>
+            <text macro="publisher" suffix=". "/>
             <text variable="note" suffix=". "/>
             <text macro="access"/>
           </group>
@@ -404,6 +404,7 @@
         <else-if type="chapter">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="publisher" suffix=". "/>
             <text macro="title" suffix=". "/>
             <text term="in" text-case="capitalize-first" suffix=": "/>
             <text macro="container-contributors" suffix=". "/>
@@ -411,7 +412,6 @@
             <text variable="collection-title"/>
             <text macro="translator" suffix=". "/>
             <text macro="edition" suffix=". "/>
-            <text macro="publisher" suffix=". "/>
             <text macro="locators" suffix=". "/>
           </group>
         </else-if>
@@ -430,11 +430,11 @@
         <else-if type="article-newspaper" match="any">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued-legislation" suffix=". "/>
             <text macro="title" suffix=". "/>
             <text macro="container-title" suffix=", "/>
             <text macro="place"/>
             <text macro="locators" suffix=", "/>
-            <text macro="issued-legislation" suffix=". "/>
             <text macro="section" suffix=". "/>
             <text macro="access"/>
           </group>
@@ -442,22 +442,22 @@
         <else-if type="thesis">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued" suffix="."/>
             <text macro="title" suffix=". "/>
             <text macro="issued-year" suffix=". "/>
             <text macro="genre" suffix=" - "/>
             <text variable="publisher" suffix=", "/>
             <text macro="place"/>
-            <text macro="issued" suffix="."/>
             <text macro="access"/>
           </group>
         </else-if>
         <else-if type="manuscript">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued" suffix=". "/>
             <text macro="title" suffix=". "/>
             <text macro="edition" suffix=". "/>
             <text macro="place" suffix=", "/>
-            <text macro="issued" suffix=". "/>
             <text macro="access" suffix=". "/>
             <text macro="archive" suffix=". "/>
           </group>
@@ -503,12 +503,12 @@
         <else-if type="entry-encyclopedia">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued" prefix="," suffix=". "/>
             <text macro="title" suffix=". "/>
             <text term="in" text-case="capitalize-first" suffix=": "/>
             <text macro="container-title" suffix="."/>
             <text variable="publisher-place" prefix=". " suffix=": "/>
             <text variable="publisher"/>
-            <text macro="issued" prefix="," suffix=". "/>
           </group>
         </else-if>
         <else-if type="paper-conference">
@@ -541,9 +541,9 @@
         <else-if type="patent" match="any">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued" suffix=". "/>
             <text macro="title" prefix=" "/>
             <text variable="number" prefix=", " suffix=", "/>
-            <text macro="issued" suffix=". "/>
           </group>
         </else-if>
         <else-if type="interview song speech" match="any">
@@ -576,14 +576,15 @@
         <else-if type="article" match="any">
           <group>
             <text macro="author" suffix=". "/>
+            <text macro="issued" suffix=". "/>
             <text macro="title" text-case="capitalize-first" suffix=", "/>
             <text variable="publisher" suffix=", "/>
-            <text macro="issued" suffix=". "/>
             <text macro="access"/>
           </group>
         </else-if>
         <else>
           <text macro="author" suffix=". "/>
+          <text macro="issued" prefix=", " suffix=". "/>
           <text macro="title" text-case="capitalize-first"/>
           <text macro="container-contributors"/>
           <text macro="secondary-contributors"/>
@@ -595,7 +596,6 @@
           </group>
           <text variable="publisher-place"/>
           <text variable="publisher" suffix=", "/>
-          <text macro="issued" prefix=", " suffix=". "/>
           <text macro="access"/>
           <text variable="medium"/>
         </else>
